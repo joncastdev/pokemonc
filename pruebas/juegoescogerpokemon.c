@@ -23,9 +23,6 @@ int main() {
  al_register_event_source(queue, al_get_display_event_source(display));
  al_register_event_source(queue, al_get_keyboard_event_source());
 
-  // bitmap = al_load_bitmap_flags("images/charmander.jpeg", ALLEGRO_NO_PREMULTIPLIED_ALPHA);
-  //  al_draw_bitmap(bitmap, 255, 100, 0); 
-
  bool running = true;
  while (running) {
   ALLEGRO_EVENT event;
@@ -40,8 +37,6 @@ int main() {
    (event.type == ALLEGRO_EVENT_KEY_DOWN && event.keyboard.keycode == ALLEGRO_KEY_ESCAPE)) {
    running = false;
 }
-
-
 
         // se necesita esto para pintar el circulo
     // si no crea muchos circulos
