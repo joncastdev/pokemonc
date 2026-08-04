@@ -13,6 +13,10 @@ $ g++ pokemon.c -o pokemon $(pkg-config --cflags --libs allegro-5 allegro_main-5
 $ g++ pokemon.c -o pokemon $(pkg-config --cflags --libs allegro-5 allegro_main-5 allegro_primitives-5)
 ``` 
 
+```bash
+$ g++ pokemon.c -o pokemon $(pkg-config --cflags --libs allegro-5 allegro_main-5 allegro_primitives-5 allegro_image-5)
+``` 
+
 
 - Iniciar proyecto
 
