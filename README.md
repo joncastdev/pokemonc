@@ -10,12 +10,27 @@ $ g++ pokemon.c -o pokemon $(pkg-config --cflags --libs allegro-5 allegro_main-5
 - Enlazar bien las librerias
 
 ```bash
-$ g++ pokemon.c -o pokemon $(pkg-config --cflags --libs allegro-5 allegro_main-5 allegro_primitives-5)
+ g++ pokemon.c -o pokemon $(pkg-config --cflags --libs allegro-5 allegro_main-5 allegro_primitives-5)
 ``` 
 
 ```bash
-$ g++ pokemon.c -o pokemon $(pkg-config --cflags --libs allegro-5 allegro_main-5 allegro_primitives-5 allegro_image-5)
+ g++ pokemon.c -o pokemon $(pkg-config --cflags --libs allegro-5 allegro_main-5 allegro_primitives-5 allegro_image-5)
 ``` 
+
+```bash
+ g++ pokemon.c -o pokemon $(pkg-config --cflags --libs allegro-5 allegro_main-5 allegro_primitives-5 allegro_image-5  allegro_font-5)
+``` 
+
+```bash
+ g++ -o conexion conexion.c $(mysql_config --cflags --libs)
+``` 
+
+```bash
+ g++ pokemondb.c -o pokemondb $(pkg-config --cflags --libs allegro-5 allegro_main-5 allegro_primitives-5 allegro_image-5 mysqlclient)
+``` 
+
+
+
 
 
 - Iniciar proyecto

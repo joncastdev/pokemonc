@@ -30,17 +30,11 @@ int main() {
 	// para dibujar cualquier vaina primero crear el display
 	al_clear_to_color(al_map_rgb(0, 0, 0));
 	// siempre hay que cargar algo antes de dibujar
-	// los path tienen problemas al ponerlos en carpetas
 	font = al_load_font("fonts/DejaVuSans.ttf", 24, 0);
-	// al_draw_text(font, al_map_rgb_f(1, 1, 1), 255, 0, ALLEGRO_ALIGN_LEFT, "Hello World");
-
 	al_draw_textf(font, al_map_rgb_f(1, 1, 1), 0, 0, 0,
 		"Screen saver: %s", active ? "Normal" : "Inhibited");
-
 	al_flip_display();
-	al_destroy_font(font);
-	al_destroy_display(display);
-	return 0;
+	// return 0;
 
  // bitmap = al_load_bitmap_flags("images/11.png", ALLEGRO_NO_PREMULTIPLIED_ALPHA);
 

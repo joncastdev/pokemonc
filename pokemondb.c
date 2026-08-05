@@ -1,18 +1,20 @@
-// funciona
-
+#include <mysql.h>
 #include <stdio.h>
+#include <stdlib.h>
 
 #include <allegro5/allegro.h>
 #include <allegro5/allegro_primitives.h>
 #include "allegro5/allegro_image.h"
-#include "allegro5/allegro_font.h"
+
+
 
 int main() {
 	ALLEGRO_BITMAP *bitmap;
-	ALLEGRO_FONT *font;
-	bool done = false;
-	bool active = true;
-	bool fullscreen = false;
+	MYSQL *conn;
+	MYSQL_RES *res;
+	MYSQL_ROW row;
+
+	conn = mysql_init(NULL);
 
 	al_init();
 	al_install_keyboard();
@@ -20,35 +22,35 @@ int main() {
      // siempre inicializamos el complemento a usar
 	al_init_image_addon();
 
-	al_init_font_addon();
-
-	
-
 	ALLEGRO_DISPLAY *display = al_create_display(640, 480);
 	ALLEGRO_EVENT_QUEUE *queue = al_create_event_queue();
-
-	// para dibujar cualquier vaina primero crear el display
-	al_clear_to_color(al_map_rgb(0, 0, 0));
-	// siempre hay que cargar algo antes de dibujar
-	// los path tienen problemas al ponerlos en carpetas
-	font = al_load_font("fonts/DejaVuSans.ttf", 24, 0);
-	// al_draw_text(font, al_map_rgb_f(1, 1, 1), 255, 0, ALLEGRO_ALIGN_LEFT, "Hello World");
-
-	al_draw_textf(font, al_map_rgb_f(1, 1, 1), 0, 0, 0,
-		"Screen saver: %s", active ? "Normal" : "Inhibited");
-
-	al_flip_display();
-	al_destroy_font(font);
-	al_destroy_display(display);
-	return 0;
 
  // bitmap = al_load_bitmap_flags("images/11.png", ALLEGRO_NO_PREMULTIPLIED_ALPHA);
 
 	al_register_event_source(queue, al_get_display_event_source(display));
 	al_register_event_source(queue, al_get_keyboard_event_source());
 
-  // bitmap = al_load_bitmap_flags("images/charmander.jpeg", ALLEGRO_NO_PREMULTIPLIED_ALPHA);
-  //  al_draw_bitmap(bitmap, 255, 100, 0); 
+
+	if (!mysql_real_connect(conn, "localhost", "jonathan", "123", "pokemonback", 0, NULL, 0)) {
+        fprintf(stderr, "%s\n", mysql_error(conn));
+        return 1;
+    }
+
+    if (mysql_query(conn, "SELECT id, character_name FROM characters")) {
+        fprintf(stderr, "%s\n", mysql_error(conn));
+        return 1;
+    }
+
+    res = mysql_store_result(conn);
+
+    // ejemplo con row
+    while ((row = mysql_fetch_row(res)) != NULL) {
+        printf("ID: %s, Character_name: %s\n", row[0], row[1]);
+    }
+  
+
+    mysql_free_result(res);
+    
 
 	bool running = true;
 	while (running) {
@@ -64,8 +66,6 @@ int main() {
 			(event.type == ALLEGRO_EVENT_KEY_DOWN && event.keyboard.keycode == ALLEGRO_KEY_ESCAPE)) {
 			running = false;
 	}
-
-
 
         // se necesita esto para pintar el circulo
     // si no crea muchos circulos
@@ -136,6 +136,7 @@ int main() {
 
 al_destroy_event_queue(queue);
 al_destroy_bitmap(bitmap);
+mysql_close(conn);
 al_destroy_display(display);
 return 0;
 }
