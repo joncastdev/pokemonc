@@ -65,14 +65,15 @@ g++ jsoncpp.c -o jsoncpp $(pkg-config --cflags --libs jsoncpp)
 ```bash
  g++ jsoncpp.c -o jsoncpp -ljsoncpp 
 
-
-
-
-
 - Iniciar proyecto
 
 ```bash
 $ ./pokemon
+``` 
+
+- Funciona con varias librerias #include <json/json.h>
+```bash
+g++ jsonapi.c -o jsonapi $(pkg-config --cflags --libs jsoncpp libcurl)
 ``` 
 
 - Pull Project Dev Branch
