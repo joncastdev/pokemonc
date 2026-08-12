@@ -112,47 +112,36 @@ int main() {
 
 	ALLEGRO_DISPLAY *display = al_create_display(640, 480);
 
-	// aqui ya tenemos el json parseado
-	Json::Value resultado = crearDatos("api/getcreatures");
-
-	// no necesito hacer estos pasos
-	Json::StreamWriterBuilder builder;
-	std::string jsonString = Json::writeString(builder, resultado);
-	// Json::Value jsonString = Json::writeString(builder, resultado);
-
-	// std::string creatureImg = jsonString["creature_img"].asString();
-
-	// std::cout << "Data response: " << resultado << "\n";
-
-	std::cout << "Data response: " << resultado["creature_img"] << "\n";
-
-	// std::cout << "Data response: " << jsonString << "\n";
-
-	// std::cout << "Data response: " << jsonString["creature_img"] << "\n";
-
-		   // std::cout << "Data response: " << creatureImg << "\n";
-
-	// exit(0);
-
-	// return 0;
-
 
 	while (running) {
 
+		Json::Value resultado = crearDatos("api/getcharacter");
 
+		Json::StreamWriterBuilder builder;
+		// std::string jsonString = Json::writeString(builder, resultado);
+		Json::Value jsonString = Json::writeString(builder, resultado);
 
 		// int id = raiz["id"].asInt();
 		// std::string characterImg = jsonString["character_img"].asString();
 
-		
+		Json::ArrayIndex i = 0;
+		while (i < jsonString.size()) {
+			// std::cout << "Id " << i << ": " << jsonString[i]["id"].asInt() << "\n";
+			// exit(1);
 
-		// bitmap = al_load_bitmap_flags("images/pikachu.jpeg", ALLEGRO_NO_PREMULTIPLIED_ALPHA);
+			// bitmap = al_load_bitmap_flags("images/pikachu.jpeg", ALLEGRO_NO_PREMULTIPLIED_ALPHA);
+			bitmap = al_load_bitmap_flags(jsonString[i]["character_img"].asString().c_str(), ALLEGRO_NO_PREMULTIPLIED_ALPHA);
+			al_draw_bitmap(bitmap, 255, 100, 0);
+			// al_clear_to_color(al_map_rgb(0, 0, 0));	
+			
+			// std::cout << "Id " << i << ": " << raiz[i]["id"].asInt() << "\n";
+			// std::cout << "character_name " << i << ": " << raiz[i]["character_name"].asString() << "\n";
+			i++;
+		}
 
-		// bitmap = al_load_bitmap_flags(jsonString["creature_img"].asString().c_str(), ALLEGRO_NO_PREMULTIPLIED_ALPHA);	
+		// bitmap = al_load_bitmap_flags("images/pikachu.jpeg", ALLEGRO_NO_PREMULTIPLIED_ALPHA);		
 
-		bitmap = al_load_bitmap_flags(resultado["creature_img"].asString().c_str(), ALLEGRO_NO_PREMULTIPLIED_ALPHA);			
-
-		al_draw_bitmap(bitmap, 255, 100, 0);
+		// al_draw_bitmap(bitmap, 255, 100, 0);
 
 		// // esto borra lo que se crea antes
 		// al_clear_to_color(al_map_rgb(0, 0, 0));
@@ -169,7 +158,12 @@ int main() {
 
 
 
-	
+	Json::Value resultado = crearDatos("api/getcharacter");
+
+	Json::StreamWriterBuilder builder;
+	std::string jsonString = Json::writeString(builder, resultado);
+
+	std::cout << jsonString << std::endl;
 	return 0;
 
 	
