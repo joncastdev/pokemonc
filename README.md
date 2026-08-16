@@ -80,3 +80,23 @@ g++ jsonapi.c -o jsonapi $(pkg-config --cflags --libs jsoncpp libcurl)
  g++ best.c -o o $(pkg-config --cflags --libs allegro-5 allegro_main-5 allegro_primitives-5 allegro_image-5 jsoncpp libcurl)
 ``` 
 
+```bash
+ g++ display2.c -o o $(pkg-config --cflags --libs allegro-5 allegro_main-5 allegro_primitives-5 allegro_image-5 allegro_font-5 jsoncpp libcurl)
+``` 
+
+```bash
+ g++ ex_disable_screensaver.c -o o $(pkg-config --cflags --libs allegro-5 allegro_main-5 allegro_primitives-5 allegro_image-5 allegro_font-5 jsoncpp libcurl)
+``` 
+
+```bash
+ g++ ex_bitmap.c -o o $(pkg-config --cflags --libs allegro-5 allegro_main-5 allegro_primitives-5 allegro_image-5 allegro_font-5 jsoncpp libcurl)
+``` 
+
+```bash
+ g++ ex_mouse_events.c -o o $(pkg-config --cflags --libs allegro-5 allegro_main-5 allegro_primitives-5 allegro_image-5 allegro_font-5 jsoncpp libcurl)
+``` 
+
+
+
+
+
