@@ -106,6 +106,10 @@ g++ jsonapi.c -o jsonapi $(pkg-config --cflags --libs jsoncpp libcurl)
  g++ ex_mouse_events.c -o o $(pkg-config --cflags --libs allegro-5 allegro_main-5 allegro_primitives-5 allegro_image-5 allegro_font-5 jsoncpp libcurl)
 ``` 
 
+```bash
+ g++ pokemonmouse.c -o o $(pkg-config --cflags --libs allegro-5 allegro_main-5 allegro_primitives-5 allegro_image-5 allegro_font-5 jsoncpp libcurl) && ./o
+``` 
+
 
 
 

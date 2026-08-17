@@ -113,7 +113,9 @@ int main() {
 
 		al_clear_to_color(blackClean);
 
-		al_draw_filled_rectangle(2000,200, 10,10, yellow);
+		// al_draw_filled_rectangle(2000,200, 10,10, yellow);
+
+		al_draw_filled_circle(250, 250,10, yellow);
 
 		// al_draw_rectangle(x + 0.5, y + 0.5, x + 26.5, y + 41.5, black, 0);
 
@@ -121,9 +123,9 @@ int main() {
 
 		al_draw_filled_circle(event.mouse.x, event.mouse.y, 10, green);
 
-		if (event.mouse.x == 628)
+		if (event.mouse.y == 250)
 		{
-			std::cout << "posicion:" + event.mouse.x << std::endl;
+			std::cout << event.mouse.y << std::endl;
 			al_clear_to_color(blackClean);
 		}
 
